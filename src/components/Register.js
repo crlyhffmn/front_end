@@ -28,8 +28,9 @@ const Register = () => {
     }
 
     return (
-        <Form>
-            
+        <Form onSubmit={onSubmitHandler}>
+
+            <Button type="submit">Submit</Button>
         </Form>
     )
 }
