@@ -1,11 +1,10 @@
 const Register = () => {
 
-    let [newUser, setNewUser] = useState({
+    const [user, setUser] = useState({
         username: '',
-        password: '',
         email: '',
-        firstName: '',
-        lastName: '',
+        password: '',
+        name: '',
     })
 
     function onSubmitHandler(event) {
@@ -15,8 +14,8 @@ const Register = () => {
 
     function onChangeHandler(event) {
         console.log(event.target.name);
-        setNewUser({
-            ...newUser,
+        setUser({
+            ...user,
             [event.target.name]: event.target.value,
         });
     }
