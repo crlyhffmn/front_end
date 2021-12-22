@@ -7,6 +7,11 @@ const Register = () => {
         name: '',
     })
 
+    // Could be used to display errors i.e. non-unique email or username, etc.
+    const [error, setError] = useState({
+        credentialError: ''
+    })
+
     function onSubmitHandler(event) {
         event.preventDefault();
         // Axios call(s)
