@@ -16,7 +16,7 @@ const Register = () => {
 
     function onSubmitHandler(event) {
         event.preventDefault();
-        // Axios call(s)
+        // Axios call(s) && Form validation
     }
 
     function onChangeHandler(event) {
