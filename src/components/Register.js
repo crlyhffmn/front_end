@@ -1,3 +1,5 @@
+import { Form } from "react-bootstrap";
+
 const Register = () => {
 
     const [user, setUser] = useState({
@@ -25,8 +27,10 @@ const Register = () => {
         });
     }
 
-    return(
-        <></>
+    return (
+        <Form>
+            
+        </Form>
     )
 }
 export default Register;
