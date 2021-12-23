@@ -133,6 +133,7 @@ const Register = () => {
                             type="text"
                             placeholder="username"
                             onChange={onChangeHandler}
+                            name="username"
                         />
                     </Form.Group>
                     <Form.Group className="mb-3">
@@ -141,6 +142,7 @@ const Register = () => {
                             type="email"
                             placeholder="example@mail.com"
                             onChange={onChangeHandler}
+                            name="email"
                         />
                     </Form.Group>
                     <Form.Group className="mb-3">
@@ -149,6 +151,7 @@ const Register = () => {
                             type="password"
                             placeholder="password"
                             onChange={onChangeHandler}
+                            name="password"
                         />
                     </Form.Group>
                     {/* <Alert variant="danger">{error}</Alert> */}
