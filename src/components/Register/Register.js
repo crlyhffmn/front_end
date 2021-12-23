@@ -44,15 +44,7 @@ const Register = () => {
             console.log("setError(true)")
             setSubmitted(false)
             setError(true)
-        }
-        // check email is in proper format before submitting
-        else if (user.username !== "" && user.email !== "" && /* add bootstrap email validator here !validator.isEmail(user.email) && */ user.password !== "") {
-            console.log("email validator")
-            setSubmitted(false)
-            setError(true)
-        }
-        // everything is good now submit to server
-        else {
+        } else { // everything is good now submit to server
             console.log("setSubmitted(true) setError(false)")
             setSubmitted(true)
             setError(false)
@@ -71,16 +63,6 @@ const Register = () => {
                 >
                     You have sucessfully registered!
                 </Alert>
-                // <div
-                //     className="success"
-                //     style={{
-                //         display: submitted ? "" : "none",
-                //     }}>
-                //     <h3 style={{
-                //         color: "black",
-                //         backgroundColor: "#7FFF00",
-                //     }}>You have successfully registered!</h3>
-                // </div>
             )
         }
         else if (error) {  // show error message if error is true
@@ -93,16 +75,6 @@ const Register = () => {
                 >
                     Please fill in all fields
                 </Alert>
-                // <div
-                //     className="error"
-                //     style={{
-                //         display: error ? "" : "none",
-                //     }}>
-                //     <h5 style={{
-                //         color: "black",
-                //         backgroundColor: "red",
-                //     }}>Please enter all the fields</h5>
-                // </div>
             )
         }
     }
