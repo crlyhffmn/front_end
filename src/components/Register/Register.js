@@ -86,7 +86,7 @@ const Register = () => {
             axios.post("http://localhost:10001/user", user)
                 .then(response => {
                     console.log(response.data);
-                    clearState()
+                    clearState();
                 })
                 .catch(error => {
                     console.error(error);
