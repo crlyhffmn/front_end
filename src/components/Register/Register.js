@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Form, Button, Card, Row, Col } from 'react-bootstrap';
+import { Form, Button, Card, Row, Col, Alert } from 'react-bootstrap';
 
 const Register = () => {
 
@@ -63,30 +63,46 @@ const Register = () => {
     const displayMessage = () => {
         if (submitted) {   // show success message if true
             return (
-                <div
-                    className="success"
+                <Alert
+                    variant='success'
                     style={{
                         display: submitted ? "" : "none",
-                    }}>
-                    <h3 style={{
-                        color: "black",
-                        backgroundColor: "#7FFF00",
-                    }}>You have successfully registered!</h3>
-                </div>
+                    }}
+                >
+                    You have sucessfully registered!
+                </Alert>
+                // <div
+                //     className="success"
+                //     style={{
+                //         display: submitted ? "" : "none",
+                //     }}>
+                //     <h3 style={{
+                //         color: "black",
+                //         backgroundColor: "#7FFF00",
+                //     }}>You have successfully registered!</h3>
+                // </div>
             )
         }
         else if (error) {  // show error message if error is true
             return (
-                <div
-                    className="error"
+                <Alert
+                    variant='danger'
                     style={{
                         display: error ? "" : "none",
-                    }}>
-                    <h5 style={{
-                        color: "black",
-                        backgroundColor: "red",
-                    }}>Please enter all the fields</h5>
-                </div>
+                    }}
+                >
+                    Please fill in all fields
+                </Alert>
+                // <div
+                //     className="error"
+                //     style={{
+                //         display: error ? "" : "none",
+                //     }}>
+                //     <h5 style={{
+                //         color: "black",
+                //         backgroundColor: "red",
+                //     }}>Please enter all the fields</h5>
+                // </div>
             )
         }
     }
@@ -135,6 +151,7 @@ const Register = () => {
                             onChange={onChangeHandler}
                         />
                     </Form.Group>
+                    {/* <Alert variant="danger">{error}</Alert> */}
                     <div className="messages">
                         {displayMessage()}
                     </div>
