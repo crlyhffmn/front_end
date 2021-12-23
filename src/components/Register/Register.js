@@ -126,7 +126,6 @@ const Register = () => {
                             name="password"
                         />
                     </Form.Group>
-                    {/* <Alert variant="danger">{error}</Alert> */}
                     <div className="messages">
                         {displayMessage()}
                     </div>
