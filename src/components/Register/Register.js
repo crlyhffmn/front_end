@@ -20,6 +20,7 @@ const Register = () => {
     // states for checking the errors
     const [submitted, setSubmitted] = useState(false);
     const [error, setError] = useState(false);
+    const [errorMsg, setErrorMsg] = useState('');
 
     function onChangeHandler(event) {
         console.log(event.target.name);
@@ -64,8 +65,7 @@ const Register = () => {
                     You have sucessfully registered!
                 </Alert>
             )
-        }
-        else if (error) {  // show error message if error is true
+        } else if (error) {  // show error message if error is true
             return (
                 <Alert
                     variant='danger'
@@ -74,6 +74,17 @@ const Register = () => {
                     }}
                 >
                     Please fill in all fields
+                </Alert>
+            )
+        } else if (errorMsg !== '') {
+            return (
+                <Alert
+                    variant='danger'
+                    style={{
+                        display: error ? "" : "none",
+                    }}
+                >
+                    {errorMsg}
                 </Alert>
             )
         }
@@ -90,6 +101,7 @@ const Register = () => {
                 })
                 .catch(error => {
                     console.error(error);
+                    setErrorMsg(error);
                 })
         }
     };
