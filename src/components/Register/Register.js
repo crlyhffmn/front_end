@@ -6,14 +6,14 @@ const Register = () => {
 
     const initialState = {
         username: '',
-        email: '',
-        password: ''
+        userEmail: '',
+        userPassword: ''
     }
 
     const [user, setUser] = useState({
         username: '',
-        email: '',
-        password: ''
+        userEmail: '',
+        userPassword: ''
     })
 
 
@@ -38,10 +38,10 @@ const Register = () => {
 
     // Handle form subsmission
     const checkFieldsHandler = (e) => {
-        console.log("user.username = " + user.username + ", user.email = " + user.email + ", user.password = " + user.password)
+        console.log("user.username = " + user.username + ", user.email = " + user.userEmail + ", user.password = " + user.password)
 
         // check if any fields are empty
-        if (user.username === "" || user.email === "" || user.password === "") {
+        if (user.username === "" || user.userEmail === "" || user.password === "") {
             console.log("setError(true)")
             setSubmitted(false)
             setError(true)
@@ -126,7 +126,7 @@ const Register = () => {
                             type="email"
                             placeholder="example@mail.com"
                             onChange={onChangeHandler}
-                            name="email"
+                            name="userEmail"
                         />
                     </Form.Group>
                     <Form.Group className="mb-3">
@@ -135,7 +135,7 @@ const Register = () => {
                             type="password"
                             placeholder="password"
                             onChange={onChangeHandler}
-                            name="password"
+                            name="userPassword"
                         />
                     </Form.Group>
                     <div className="messages">
