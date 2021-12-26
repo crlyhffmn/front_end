@@ -62,7 +62,7 @@ const Register = () => {
                         display: submitted ? "" : "none",
                     }}
                 >
-                    You have sucessfully registered!
+                    You have successfully registered!
                 </Alert>
             )
         } else if (error) {  // show error message if error is true
