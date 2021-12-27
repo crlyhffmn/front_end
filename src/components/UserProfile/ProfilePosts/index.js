@@ -4,8 +4,8 @@ import axios from "axios";
 const ProfilePosts = () => {
   const [post, setPost] = React.useState(null);
 
-  React.useEffect(() => {
-    axios.get(/*AxiosCall*/).then((response) => {
+  useEffect(() => {
+    axios.get(/*DatabaseUrl*/).then((response) => {
       setPost(response.data);
     });
   }, []);
@@ -13,16 +13,21 @@ const ProfilePosts = () => {
   if (!post) return null;
 
   return (
-    <div className="container">
+    <div className="postContainer">
       <div
         style={{
           border: "1px solid #C4C4C4",
-          height: "500px",
+          height: "100%",
           marginBottom: "50px"
         }}
       >
-        {/* <h1>{post.title}</h1>
-        <p>{post.body}</p> */}
+        {/* <h1>
+        posts.map ( post => {
+          return <Post title={post.title} />
+        })
+        </h1>
+        <p>posts.map ( post => {
+          return <Post body={post.body} /> */}
       </div>
     </div>
   );
