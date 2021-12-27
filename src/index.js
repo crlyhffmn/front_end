@@ -5,10 +5,24 @@ import 'react-bootstrap';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import {configureStore} from '@reduxjs/toolkit';
+import { Provider } from 'react-redux';
+import userReducer from './userStore';
+
+
+const store = configureStore({
+  reducer: {
+    user: userReducer,
+  },
+});
+
 
 ReactDOM.render(
   <React.StrictMode>
+    <Provider store ={store}>
     <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
