@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 
 const ProfilePosts = () => {
   function getPosts() {
@@ -7,7 +8,6 @@ const ProfilePosts = () => {
 
   return (
     <div className="container">
-      <h1>User Activity</h1>
       <div
         style={{
           border: "1px solid #C4C4C4",

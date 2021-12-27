@@ -7,37 +7,27 @@ const ProfileInfo = () => {
       <div className="col">
         <div className="row">
           <div className="col">
-            <p>
-              <span>First Name: </span>Mark
-            </p>
+            <p>Mark</p>
           </div>
           <div className="col">
-            <p>
-              <span>Last Name: </span>Watson
-            </p>
+            <p>Watson</p>
           </div>
         </div>
         <div className="row">
           <div className="col">
-            <p>
-              <span>Date of Birth: </span>12/25/98
-            </p>
+            <p>Dec 25, 1998</p>
           </div>
           <div className="col">
-            <p>
-              <span>Gender: </span>Male
-            </p>
+            <p>Male</p>
           </div>
         </div>
         <br />
         <div className="row">
-          <span>Bio:</span>
           <div
             style={{
               height: "150px",
               width: "100%",
               marginBottom: "10px",
-              border: "2px solid #C4C4C4",
               boxSizing: "border-box",
               fontWeight: "normal",
             }}
