@@ -4,6 +4,8 @@ import { Form, Button, Card, Row, Col, Alert } from 'react-bootstrap';
 
 const Register = () => {
 
+    const [validated, setValidated] = useState(false);
+
     const initialState = {
         username: '',
         userEmail: '',
@@ -54,18 +56,7 @@ const Register = () => {
 
 
     const displayMessage = () => {
-        if (submitted) {   // show success message if true
-            return (
-                <Alert
-                    variant='success'
-                    style={{
-                        display: submitted ? "" : "none",
-                    }}
-                >
-                    You have successfully registered!
-                </Alert>
-            )
-        } else if (error) {  // show error message if error is true
+        if (error) {  // show error message if error is true
             return (
                 <Alert
                     variant='danger'
@@ -88,12 +79,30 @@ const Register = () => {
                 </Alert>
             )
         }
+        else if (submitted) {   // show success message if true
+            return (
+                <Alert
+                    variant='success'
+                    style={{
+                        display: submitted ? "" : "none",
+                    }}
+                >
+                    You have successfully registered!
+                </Alert>
+            )
+        }
     }
 
 
     const registerHandler = (e) => {
         e.preventDefault();
-        if (error === false) {
+
+        const form = e.currentTarget;
+        if (form.checkValidity() === true) {
+            e.preventDefault();
+            e.stopPropagation();
+            setValidated(true);
+        // if (error === false) {
             axios.post("http://localhost:10001/user", user)
                 .then(response => {
                     console.log(response.data);
@@ -102,15 +111,29 @@ const Register = () => {
                 .catch(error => {
                     console.error(error);
                     setErrorMsg(error);
+                    // set duplicate user
+                    // error.response.data.message
+                    console.log(error.response.data.message)
                 })
         }
+        else {
+            setSubmitted(false)
+        }
+
+        // const form = e.currentTarget;
+        // if (form.checkValidity() === false) {
+        //     e.preventDefault();
+        //     e.stopPropagation();
+        // }
+        // setValidated(true);
+
     };
 
     return (
         <Card>
             <Card.Title>Registration Form</Card.Title>
             <Card.Body style={{ textAlign: "left" }}>
-                <Form onSubmit={registerHandler}>
+                <Form noValidate validated={validated} onSubmit={registerHandler} onError={error => setError(true)}>
                     <Form.Group className="mb-3">
                         <Form.Label>Username </Form.Label>
                         <Form.Control
@@ -118,7 +141,11 @@ const Register = () => {
                             placeholder="username"
                             onChange={onChangeHandler}
                             name="username"
+                            required
                         />
+                        <Form.Control.Feedback type="invalid">
+                            Please provide a username.
+                        </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Email </Form.Label>
@@ -127,7 +154,11 @@ const Register = () => {
                             placeholder="example@mail.com"
                             onChange={onChangeHandler}
                             name="userEmail"
+                            required
                         />
+                        <Form.Control.Feedback type="invalid">
+                            Please provide a valid email.
+                        </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Password </Form.Label>
@@ -136,7 +167,11 @@ const Register = () => {
                             placeholder="password"
                             onChange={onChangeHandler}
                             name="userPassword"
+                            required
                         />
+                        <Form.Control.Feedback type="invalid">
+                            Please provide a password.
+                        </Form.Control.Feedback>
                     </Form.Group>
                     <div className="messages">
                         {displayMessage()}
