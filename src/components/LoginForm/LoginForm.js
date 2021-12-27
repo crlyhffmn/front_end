@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import {Alert} from 'react-bootstrap';
 import './LoginForm.css';
-
+import logo from '../../image/Logo3.png';
 
 const LoginForm = () => {
     const [users, setUsers] = useState({
@@ -19,21 +19,20 @@ const LoginForm = () => {
 
     function onSubmitHandler(e) {
         e.preventDefault();
-        axios.get("http://localhost:10001/user", users.username)
+        axios.get("http://localhost:10001/user", users)
         .then(response => {
             console.log(response.data);
-            if(response.data === ""){
-                return(
-                    <Alert>Please enter your username</Alert>
-                )
-            }else if(response.data.password !== users.password){
-                return(
-                    <Alert>Invalid Password</Alert>
-                )
-            };
+            // save it to the store
+
+            // after save, forward to the homepage
         })
-        .catch(error => {console.error(error)})
-    }
+        .catch(error => {
+            console.error(error)
+            return(
+                <Alert>error.response.data.message</Alert>
+            )
+        })
+    };
 
     function onClickHandler(e){
         e.preventDefault();
@@ -52,13 +51,12 @@ const LoginForm = () => {
 
             <div className="containerRight">
                 <form className="form">
+                    <img className="logo" src={logo}/>
                     <div className="form-group">
-                        <input type="text" placeholder="Enter Your Email or Username" name="username" value={users.username} onChange={onChangeHandler} /> <br></br>
-                         <input type="password"  placeholder="Password" name="password" value={users.password} onChange={onChangeHandler} /><br/><br/>
+                        <input type="text" placeholder="Enter Your Username" name="username" value={users.username} onChange={onChangeHandler} required/> <br></br>
+                         <input type="password"  placeholder="Password" name="password" value={users.password} onChange={onChangeHandler} required /><br/><br/>
                         <button onSubmit={onSubmitHandler}>Log In</button>
                     </div>
-                        {/* <Link to="/update">forgot you password?</Link> */}
-                    <p><a href ="/">forgot your password?</a></p>
                     <hr/>
                     <div className="btn">
                         <button onClick={onClickHandler}>Create an Account</button>
