@@ -1,9 +1,16 @@
-import React from "react";
+import React, {useEffect} from "react";
+import axios from "axios";
 
 const ProfilePic = () => {
-  function getPfp() {
-    return null;
-  }
+    const [pic, setPic] = React.useState(null);
+  
+    useEffect(() => {
+      axios.get(/*DatabaseUrl*/).then((response) => {
+        setPic(response.data);
+      });
+    }, []);
+  
+    if (!pic) return null;
 
   return (
     <div className="container" style={{ fontWeight: "bold" }}>
@@ -18,7 +25,7 @@ const ProfilePic = () => {
               verticalAlign: "middle",
               marginBottom: "20px"
           }}>
-            <img src="" alt="" class="avatar" />
+            <img src=/*{profile.pic}*/"" alt="" class="avatar" />
           </div>
         </div>
         <div className="row">
