@@ -1,5 +1,6 @@
 import React, {useEffect} from "react";
 import axios from "axios";
+import Profile from "../../../pages/profile";
 
 const ProfilePic = () => {
     // const [pic, setPic] = React.useState(null);
@@ -30,7 +31,10 @@ const ProfilePic = () => {
         </div>
         <div className="row">
           <p>Alias</p>
-          <p>@UserName</p>
+          <p>
+            <span>@</span>
+            {/* {profile.userName} */}
+            UserName</p>
         </div>
       </div>
     </div>

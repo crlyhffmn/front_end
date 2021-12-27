@@ -18,7 +18,8 @@ const ProfilePosts = () => {
         style={{
           border: "1px solid #C4C4C4",
           height: "100%",
-          marginBottom: "50px"
+          marginBottom: "50px",
+          marginTop: "15px"
         }}
       >
         {/* <h1>

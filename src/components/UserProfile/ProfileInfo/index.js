@@ -19,12 +19,8 @@ const ProfileInfo = () => {
       <div className="col">
         <div className="row">
           <div className="col">
-            {/* <p>{userInfo.firstName}</p> */}
-            <p>Mark</p>
-          </div>
-          <div className="col">
-            {/* <p>{userInfo.lastName}</p> */}
-            <p>Watson</p>
+            {/* <p>{userInfo.name}</p> */}
+            <p>Mark Watson</p>
           </div>
         </div>
         <div className="row">
@@ -40,22 +36,26 @@ const ProfileInfo = () => {
         <br />
         <div className="row">
           <div
-            style={{
-              height: "150px",
+            
+          >
+            <textarea maxLength={250} style={{
+              height: "200px",
               width: "100%",
               marginBottom: "10px",
               boxSizing: "border-box",
+              border: "0px",
               fontWeight: "normal",
-            }}
-          >
-            {/* {userInfo.bio} */}
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+              fontSize: "18px"
+            }}>
+              {/* {userInfo.bio} */}
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </textarea>
           </div>
           {/* <button
             type="button"
