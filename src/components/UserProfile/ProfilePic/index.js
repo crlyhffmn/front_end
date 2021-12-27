@@ -2,15 +2,15 @@ import React, {useEffect} from "react";
 import axios from "axios";
 
 const ProfilePic = () => {
-    const [pic, setPic] = React.useState(null);
+    // const [pic, setPic] = React.useState(null);
   
-    useEffect(() => {
-      axios.get(/*DatabaseUrl*/).then((response) => {
-        setPic(response.data);
-      });
-    }, []);
+    // useEffect(() => {
+    //   axios.get(/*DatabaseUrl/Picture*/).then((response) => {
+    //     setPic(response.data);
+    //   });
+    // }, []);
   
-    if (!pic) return null;
+    // if (!pic) return null;
 
   return (
     <div className="container" style={{ fontWeight: "bold" }}>

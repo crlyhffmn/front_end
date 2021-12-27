@@ -2,15 +2,15 @@ import React, {useEffect} from "react";
 import axios from "axios";
 
 const ProfilePosts = () => {
-  const [post, setPost] = React.useState(null);
+  // const [post, setPost] = React.useState(null);
 
-  useEffect(() => {
-    axios.get(/*DatabaseUrl*/).then((response) => {
-      setPost(response.data);
-    });
-  }, []);
+  // useEffect(() => {
+  //   axios.get(/*DatabaseUrl/Posts*/).then((response) => {
+  //     setPost(response.data);
+  //   });
+  // }, []);
 
-  if (!post) return null;
+  // if (!post) return null;
 
   return (
     <div className="postContainer">
