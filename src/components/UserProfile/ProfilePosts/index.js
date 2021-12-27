@@ -1,10 +1,16 @@
-import React from "react";
+import React, {useEffect} from "react";
 import axios from "axios";
 
 const ProfilePosts = () => {
-  function getPosts() {
-    return null;
-  }
+  const [post, setPost] = React.useState(null);
+
+  React.useEffect(() => {
+    axios.get(/*AxiosCall*/).then((response) => {
+      setPost(response.data);
+    });
+  }, []);
+
+  if (!post) return null;
 
   return (
     <div className="container">
@@ -15,6 +21,8 @@ const ProfilePosts = () => {
           marginBottom: "50px"
         }}
       >
+        {/* <h1>{post.title}</h1>
+        <p>{post.body}</p> */}
       </div>
     </div>
   );
