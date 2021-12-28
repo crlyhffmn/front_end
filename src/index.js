@@ -12,7 +12,7 @@ import {userStore} from './userStore'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider userStore ={userStore}>
+    <Provider store={userStore}>
     <App />
     
     </Provider>
