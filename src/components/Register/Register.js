@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Form, Button, Card, Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { Form, Button, Card, Row, Col, FormGroup } from 'react-bootstrap';
+import logo from './Logo3.png'
+import './register.css';
+import { hover } from '@testing-library/user-event/dist/hover';
 
 const Register = () => {
 
@@ -106,13 +110,44 @@ const Register = () => {
         }
     };
 
+    console.log(logo)
+
     return (
-        <Card>
-            <Card.Title>Registration Form</Card.Title>
-            <Card.Body style={{ textAlign: "left" }}>
-                <Form onSubmit={registerHandler}>
+        <div className='row align-items-center'>
+            <div className='col'>
+                <div className="logob">
+                    <img className='logo' src={logo} alt="mint" style={{ paddingTop: '50px' }}></img>
+                    {/* <br></br> */}
+
+                    <h1 style={{ float: 'center', paddingLeft: '85px', marginTop:'40px' }}>
+                        MiniMint
+                    </h1>
+
+                    {/* <br></br> */}
+
+                    <div className="textbox">
+
+                        <h2 style={{ color: '#C21515', marginTop:'50px' }}>
+                            Join the awesome Batch<br></br>
+
+                            of Minty social media.
+                        </h2>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <div className='col'>
+
+                <Form className='reg-form' onSubmit={registerHandler} >
+
+                    <h3>Register</h3>
+                    <h4>It's quick and easy</h4>
+                    <hr></hr>
                     <Form.Group className="mb-3">
-                        <Form.Label>Username </Form.Label>
+                        <Form.Label >Username </Form.Label>
                         <Form.Control
                             type="text"
                             placeholder="username"
@@ -138,15 +173,33 @@ const Register = () => {
                     <div className="messages">
                         {displayMessage()}
                     </div>
-                    <Button
-                        onClick={checkFieldsHandler}
-                        type="submit"
-                    >
-                        Register
-                    </Button>
+
+                    <FormGroup >
+                        <button
+                            className="btn-reg"
+                            onClick={checkFieldsHandler}
+                            type="submit"
+                        // style={{ width: '23rem', marginTop: '-12.125', marginRight: '160px', backgroundColor: '#C21515', border: 'none' }}
+                        // onFocus={{ backgroundColor:'#BADABF' }}
+                        >
+                            Register
+                        </button>
+                    </FormGroup>
                 </Form>
-            </Card.Body>
-        </Card>
+                <Form className='reg-formb'>
+                    <a href="/login" class="stretched-link">Already Registered?</a>
+                </Form>
+                {/* </Card.Body>
+                </Card> */}
+            </div>
+
+            {/* <div className='col'>
+
+                
+
+            </div> */}
+
+        </div>
     )
 }
 export default Register;

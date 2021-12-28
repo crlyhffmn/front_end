@@ -1,16 +1,7 @@
-
-
-*{
-    margin: 0%;
-    padding: 0%;
-    background-color: 	#badabf;
-    /* display: flex; */
-}
-
 .textbox{
     margin-top: 200px;
     margin-left: 150px;
-    /* border: none; */
+   
 }
 
 h1{
@@ -28,7 +19,7 @@ h2{
     width: 500px;
 }
 
-.container{ 
+Card{ 
     width: 400px;
     height: 350px;
     margin-top: -194px;

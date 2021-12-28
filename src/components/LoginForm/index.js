@@ -12,7 +12,7 @@ const LoginForm = () => {
         password: ''
     });
 
-    function onChangeHandler(e){
+    function onChangeHandler(e) {
         setUsers({
             ...users,
             [e.target.name]: e.target.value
@@ -26,15 +26,20 @@ const LoginForm = () => {
 
     console.log(logo);
 
-    return(
+    return (
 
         <div className='row'>
             <div className='column'>
 
-                <div className="textbox">
-                    <h1>
-                        MiniMint
-                    </h1>
+
+                <h1>
+                    MiniMint
+                </h1>
+
+
+                <br></br>
+
+                <div>
                     <h2>
                         Some Mints a day<br></br>
                         Helps keep the bored away.
@@ -57,19 +62,19 @@ const LoginForm = () => {
                     </div>
                     <Button href="/" type="submit" className="btn-login" size="lg">Log In</Button>
                     <hr></hr>
-                    <p>Forgot your password?</p>
-                   
-                  
+                    <p>Not yet registered?</p>
+
+
                     <Button href="/register" type="submit" className="btn-register" size="lg" >Create Account</Button>
-                  
-                   
+
+
                 </form>
 
             </div>
         </div>
     )
 
-      
+
 
 }
 export default LoginForm;
