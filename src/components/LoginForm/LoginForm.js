@@ -53,14 +53,16 @@ const LoginForm = () => {
                 <form className="form">
                     <img className="logo" src={logo}/>
                     <div className="form-group">
+                        <label className="form-label">Username</label>
                         <input type="text" placeholder="Enter Your Username" name="username" value={users.username} onChange={onChangeHandler} required/> <br></br>
-                         <input type="password"  placeholder="Password" name="password" value={users.password} onChange={onChangeHandler} required /><br/><br/>
-                        <button onSubmit={onSubmitHandler}>Log In</button>
+                    </div><br/>
+                    <div className="form-group">
+                        <label className="form-label">Password</label>
+                        <input type="password"  placeholder="Password" name="password" value={users.password} onChange={onChangeHandler} required /><br/><br/>
+                        <button className="btn-login" onSubmit={onSubmitHandler}>Log In</button>
                     </div>
                     <hr/>
-                    <div className="btn">
-                        <button onClick={onClickHandler}>Create an Account</button>
-                    </div>
+                    <button className="btn-register" onClick={onClickHandler}>Create an Account</button>
                 </form>                
             </div>
         </div>
