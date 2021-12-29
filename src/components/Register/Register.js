@@ -86,10 +86,10 @@ const Register = () => {
 
   const registerHandler = (e) => {
     e.preventDefault();
+    e.stopPropagation();
+
     const form = e.currentTarget;
     if (form.checkValidity() === true) {
-      e.preventDefault();
-      e.stopPropagation();
       axios
         .post("http://localhost:10001/user", user)
         .then((response) => {
