@@ -1,22 +1,15 @@
-import {createSlice} from '@reduxjs/toolkit';
+import { createStore } from "redux";
 
+const initialState ={id:0, username: " ", password: " ", email: " ", name: " ", alias: " ", dob: " ", gender: " "}
 
-const initialStateValue ={userId:0, username: " ", password: " ", email: " "}
+const counterModify = (state = initialState, action) => {
+    if (action.type === "change") {
+        console.log(action.payload)
+        return { ...state, ...action.payload };
+        
+    }
+    return state;
+}
 
-export const userSlice = createSlice({
-    name: "user",
-    initialState:{value: initialStateValue},
-    reducers: {
-        login: (state, action) =>{
-            state.value = action.payload;
-        },
-
-        logout: (state) =>{
-            state.value = initialStateValue;
-        }
-    },
-});
-
-export const {login, logout} = userSlice.actions;
-
-export default userSlice.reducer;
+const store = createStore(counterModify);
+export default store;
