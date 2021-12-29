@@ -3,6 +3,7 @@ import axios from "axios";
 import { Form, Button, Card, Row, Col, Alert } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../../userSlice";
+import { useSelector } from "react-redux";
 
 const Register = () => {
   const [validated, setValidated] = useState(false);
@@ -13,11 +14,7 @@ const Register = () => {
     userPassword: "",
   };
 
-  const [user, setUser] = useState({
-    username: "",
-    userEmail: "",
-    userPassword: "",
-  });
+  const [user, setUser] = useState(initialState);
 
   const dispatch = useDispatch();
 
@@ -101,10 +98,8 @@ const Register = () => {
         .catch((error) => {
           console.error(error);
           //setErrorMsg(error.response.data.message);
-          setErrorMsg("User email has already been registered.");
-          console.log(
-            "error.response.data.message = " + error.response.data.message
-          );
+          setErrorMsg("Username or email has already been registered.");
+          console.log(error.response);
         });
     } else {
       setSubmitted(false);
