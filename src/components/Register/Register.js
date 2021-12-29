@@ -1,29 +1,35 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { Form, Button, Card, Row, Col, FormGroup } from 'react-bootstrap';
 import logo from './Logo3.png'
 import './register.css';
 import { hover } from '@testing-library/user-event/dist/hover';
+import { Form, Button, Card, Row, Col, Alert, FormGroup } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+// import { login } from '../../userStore';
 
 const Register = () => {
 
+    const [validated, setValidated] = useState(false);
+
     const initialState = {
         username: '',
-        email: '',
-        password: ''
+        userEmail: '',
+        userPassword: ''
     }
 
     const [user, setUser] = useState({
         username: '',
-        email: '',
-        password: ''
+        userEmail: '',
+        userPassword: ''
     })
+
+    const dispatch = useDispatch();
 
 
     // states for checking the errors
     const [submitted, setSubmitted] = useState(false);
-    const [error, setError] = useState(false);
+    const [errorMsg, setErrorMsg] = useState('');
 
     function onChangeHandler(event) {
         console.log(event.target.name);
@@ -41,56 +47,44 @@ const Register = () => {
 
     // Handle form subsmission
     const checkFieldsHandler = (e) => {
-        console.log("user.username = " + user.username + ", user.email = " + user.email + ", user.password = " + user.password)
+        //console.log("user.username = " + user.username + ", user.userEmail = " + user.userEmail + ", user.userPassword = " + user.userPassword)
 
         // check if any fields are empty
-        if (user.username === "" || user.email === "" || user.password === "") {
+        if (user.username === "" || user.userEmail === "" || user.userPassword === "") {
             console.log("setError(true)")
             setSubmitted(false)
-            setError(true)
-        }
-        // check email is in proper format before submitting
-        else if (user.username !== "" && user.email !== "" && /* add bootstrap email validator here !validator.isEmail(user.email) && */ user.password !== "") {
-            console.log("email validator")
-            setSubmitted(false)
-            setError(true)
-        }
-        // everything is good now submit to server
-        else {
+            setErrorMsg('Please fill out all the fields.')
+        }        
+        else { // everything is good now submit to server
             console.log("setSubmitted(true) setError(false)")
-            setSubmitted(true)
-            setError(false)
+            setErrorMsg('')
         }
     }
 
 
     const displayMessage = () => {
-        if (submitted) {   // show success message if true
+        if (errorMsg !== '') {
             return (
-                <div
-                    className="success"
+                <Alert
+                    variant='danger'
                     style={{
-                        display: submitted ? "" : "none",
-                    }}>
-                    <h3 style={{
-                        color: "black",
-                        backgroundColor: "#7FFF00",
-                    }}>You have successfully registered!</h3>
-                </div>
+                        display: errorMsg ? "" : "none",
+                    }}
+                >
+                    {errorMsg}
+                </Alert>
             )
         }
-        else if (error) {  // show error message if error is true
+        else if (submitted) {   // show success message if true
             return (
-                <div
-                    className="error"
+                <Alert
+                    variant='success'
                     style={{
-                        display: error ? "" : "none",
-                    }}>
-                    <h5 style={{
-                        color: "black",
-                        backgroundColor: "red",
-                    }}>Please enter all the fields</h5>
-                </div>
+                        display: submitted ? "" : "none",
+                    }}
+                >
+                    You have successfully registered!
+                </Alert>
             )
         }
     }
@@ -98,17 +92,33 @@ const Register = () => {
 
     const registerHandler = (e) => {
         e.preventDefault();
-        if (error === false) {
+        dispatch(login(user));
+        const form = e.currentTarget;
+        if (form.checkValidity() === true) {
+            e.preventDefault();
+            e.stopPropagation();
             axios.post("http://localhost:10001/user", user)
                 .then(response => {
                     console.log(response.data);
-                    clearState()
+                    clearState();
+                    setSubmitted(true)
                 })
                 .catch(error => {
                     console.error(error);
+                    //setErrorMsg(error.response.data.message);
+                    setErrorMsg("User email has already been registered.")
+                    console.log("error.response.data.message = " + error.response.data.message)
                 })
         }
-    };
+        else {
+            setSubmitted(false)
+        }
+
+        setValidated(true);
+
+    }; 
+
+    console.log("errorMsg = " + errorMsg);
 
     console.log(logo)
 
@@ -141,7 +151,7 @@ const Register = () => {
 
             <div className='col'>
 
-                <Form className='reg-form' onSubmit={registerHandler} >
+                <Form className='reg-form' noValidate validated={validated} onSubmit={registerHandler} >
 
                     <h3>Register</h3>
                     <h4>It's quick and easy</h4>
@@ -152,7 +162,12 @@ const Register = () => {
                             type="text"
                             placeholder="username"
                             onChange={onChangeHandler}
+                            name="username"
+                            required
                         />
+                        <Form.Control.Feedback type="invalid">
+                            Please provide a username.
+                        </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Email </Form.Label>
@@ -160,7 +175,12 @@ const Register = () => {
                             type="email"
                             placeholder="example@mail.com"
                             onChange={onChangeHandler}
+                            name="userEmail"
+                            required
                         />
+                        <Form.Control.Feedback type="invalid">
+                            Please provide a valid email.
+                        </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Password </Form.Label>
@@ -168,7 +188,12 @@ const Register = () => {
                             type="password"
                             placeholder="password"
                             onChange={onChangeHandler}
+                            name="userPassword"
+                            required
                         />
+                        <Form.Control.Feedback type="invalid">
+                            Please provide a password.
+                        </Form.Control.Feedback>
                     </Form.Group>
                     <div className="messages">
                         {displayMessage()}
