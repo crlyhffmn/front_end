@@ -3,7 +3,6 @@ import axios from "axios";
 import { Form, Button, Card, Row, Col, Alert } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../../userSlice";
-import { useSelector } from "react-redux";
 
 const Register = () => {
   const [validated, setValidated] = useState(false);

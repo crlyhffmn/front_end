@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Alert } from "react-bootstrap";
-import "./LoginForm.css";
+import "./index.css";
 import logo from "../../image/Logo3.png";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../../userSlice";
