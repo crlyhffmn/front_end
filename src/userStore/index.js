@@ -1,15 +1,8 @@
-import { createStore } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
+import userReducer from "../userSlice";
 
-const initialState ={id:0, username: " ", password: " ", email: " ", name: " ", alias: " ", dob: " ", gender: " "}
-
-const counterModify = (state = initialState, action) => {
-    if (action.type === "change") {
-        console.log(action.payload)
-        return { ...state, ...action.payload };
-        
-    }
-    return state;
-}
-
-const store = createStore(counterModify);
-export default store;
+export const userStore = configureStore({
+  reducer: {
+    user: userReducer,
+  },
+});
