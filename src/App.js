@@ -1,19 +1,19 @@
 import './App.css';
-import RegisterPage from './pages/RegisterPage/RegisterPage';
-import LoginPage from './pages/LoginPage/LoginPage';
-import Posts from './components/Posts';
-
-
+// import LoginForm from './components/LoginForm';
+import Profile from './pages/profile';
+import PrivacyPage from './pages/PrivacyPage';
 
 function App() {
   return (
-    <div className="App">  
-       <LoginPage /> 
-      {/* <RegisterPage /> */}
-      {/* <Posts /> */}
+    <div>
+      {/* <LoginForm/> */}
+      {/* <NavbarProfile />
+      <Profile /> */}
+      <PrivacyPage />
     </div>
    
   );
+
 }
 
 export default App;
