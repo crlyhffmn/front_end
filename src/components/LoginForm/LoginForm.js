@@ -24,7 +24,7 @@ const LoginForm = () => {
   function onSubmitHandler(e) {
     e.preventDefault();
     axios
-      .get("http://localhost:10001/user", user)
+      .post("http://localhost:10001/user/login", user)
       .then((response) => {
         console.log(response.data);
         dispatch(loginUser(response.data));
