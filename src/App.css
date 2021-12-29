@@ -36,3 +36,104 @@
     transform: rotate(360deg);
   }
 }
+
+/*Profile NavBar*/
+.profile-header{
+  text-align: center;
+}
+
+.profile-header p {
+  font-size: 12px;
+}
+
+.profile-header img {
+  border-radius: 50%;
+}
+
+.me-auto {
+  text-align: center;
+}
+
+#navbarScrollingDropdown::after{
+  display: none;
+}
+
+.container {
+  height: auto;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-link {
+  height: 50px;
+}
+
+/*Navbar Icons*/
+.svg-inline--fa {
+  color: #202020;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+}
+
+.svg-inline--fa:hover {
+  color: #BADABF;
+}
+
+/*Privacy Form*/
+.privacy-form {
+  width: 350px;
+  height: auto;
+  padding: 15px;
+  margin: 5px;
+  border: 1px solid #C4C4C4;
+  border-radius: 10px;
+}
+.privacy-form .form-switch {
+  text-align: left;
+}
+.privacy-form .form-check-input {
+  float: right !important;
+}
+
+.privacy-form .btn {
+  background-color: #C21515;
+  color: white;
+  font-size: 18px;
+}
+
+.privacy-form button:hover {
+  background-color: #BADABF;
+  color: white;
+}
+
+.privacy-form .form-check-input:checked {
+  background-color: #C21515 !important;
+  border-color: #880F0F;
+}
+
+.privacy-form .form-check-input:focus{
+  border-color: #C4C4C4 !important;
+  box-shadow: 0 1px 1px #C4C4C4 !important;
+  outline: none;
+}
+
+.privacy-form .form-check-input:focus {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23C4C4C4'/%3e%3c/svg%3e") !important;
+}
+
+.privacy-form p {
+  font-size: 15px;
+}
+
+/*Footer*/
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+footer p {
+  font-size: 15px;
+}
