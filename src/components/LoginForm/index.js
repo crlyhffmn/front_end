@@ -3,7 +3,7 @@ import axios from "axios";
 import './login.css';
 import logo from './Logo3.png'
 import { Link } from "react-router-dom";
-import Register from "../Register/Register";
+import Register from "../Register";
 import { Form, Button, Card, Row, Col, FormGroup } from 'react-bootstrap';
 
 const LoginForm = () => {
@@ -51,7 +51,11 @@ const LoginForm = () => {
             <div className="column">
 
                 <form onSubmit={onSubmitHandler}>
+                  
                     <img className='logo' src={logo} alt="mint"></img>
+                    
+                   
+                    
                     <div className="mb-3">
                         <label className="form-label">Username</label>
                         <input type="text" className="form-control" name="username" placeholder="Username" value={users.username} onChange={onChangeHandler} required />

@@ -12,11 +12,11 @@ import {userStore} from './userStore'
 
 
 
-const store = configureStore({
-  reducer: {
-    user: userReducer,
-  },
-});
+// const store = configureStore({
+//   reducer: {
+//     user: userReducer,
+//   },
+// });
 
 
 ReactDOM.render(
