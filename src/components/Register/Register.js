@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Form, Button, Card, Row, Col, Alert } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { login } from "../../userStore";
+import { loginUser } from "../../userSlice";
 
 const Register = () => {
   const [validated, setValidated] = useState(false);
@@ -86,7 +86,6 @@ const Register = () => {
 
   const registerHandler = (e) => {
     e.preventDefault();
-    dispatch(login(user));
     const form = e.currentTarget;
     if (form.checkValidity() === true) {
       e.preventDefault();
@@ -97,6 +96,7 @@ const Register = () => {
           console.log(response.data);
           clearState();
           setSubmitted(true);
+          dispatch(loginUser(response.data));
         })
         .catch((error) => {
           console.error(error);
