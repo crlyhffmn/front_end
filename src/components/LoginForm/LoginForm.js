@@ -3,11 +3,10 @@ import axios from "axios";
 import { Alert } from "react-bootstrap";
 import "./LoginForm.css";
 import logo from "../../image/Logo3.png";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { loginUser } from "../../userSlice";
 
 const LoginForm = () => {
-  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   const [user, setUsers] = useState({
