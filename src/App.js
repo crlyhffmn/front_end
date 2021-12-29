@@ -1,14 +1,7 @@
-import './App.css';
-import LoginForm from './components/LoginForm';
-import Register from './components/Register';
+import "./App.css";
 
 function App() {
-  return (
-    <div className="App">
-      <Register />
-      <LoginForm />
-    </div>
-  );
+  return <div className="App"></div>;
 }
 
 export default App;
