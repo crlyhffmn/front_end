@@ -9,13 +9,33 @@ import { loginUser } from "../../userSlice";
 const LoginForm = () => {
   const dispatch = useDispatch();
 
-  const [user, setUsers] = useState({
+  const [errorMsg, setErrorMsg] = useState("");
+
+  const initialState = {
     username: "",
     userPassword: "",
-  });
+  };
+
+  const [user, setUser] = useState(initialState);
+
+  const displayMessage = () => {
+    if (errorMsg !== "") {
+      return (
+        <Alert
+          variant="danger"
+          style={{
+            display: errorMsg ? "" : "none",
+          }}
+        >
+          {errorMsg}
+        </Alert>
+      );
+    }
+  };
 
   function onChangeHandler(e) {
-    setUsers({
+    setErrorMsg("");
+    setUser({
       ...user,
       [e.target.name]: e.target.value,
     });
@@ -24,7 +44,7 @@ const LoginForm = () => {
   function onSubmitHandler(e) {
     e.preventDefault();
     e.stopPropagation();
-    console.log(e)
+    console.log(e);
     axios
       .post("http://localhost:10001/user/login", user)
       .then((response) => {
@@ -33,9 +53,10 @@ const LoginForm = () => {
       })
       .catch((error) => {
         console.error(error);
-        console.log(error.response)
+        console.log(error.response);
         //does not alert user
-        return <Alert>error.response.data.message</Alert>;
+        setErrorMsg("Username or Password is Incorrect");
+        setUser(initialState);
       });
   }
 
@@ -86,6 +107,7 @@ const LoginForm = () => {
             />
             <br />
             <br />
+            <div className="messages">{displayMessage()}</div>
             <button className="btn-login" type="submit">
               Log In
             </button>
