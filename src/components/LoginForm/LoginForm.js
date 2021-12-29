@@ -23,6 +23,8 @@ const LoginForm = () => {
 
   function onSubmitHandler(e) {
     e.preventDefault();
+    e.stopPropagation();
+    console.log(e)
     axios
       .post("http://localhost:10001/user/login", user)
       .then((response) => {
@@ -31,12 +33,15 @@ const LoginForm = () => {
       })
       .catch((error) => {
         console.error(error);
+        console.log(error.response)
+        //does not alert user
         return <Alert>error.response.data.message</Alert>;
       });
   }
 
   function onClickHandler(e) {
     e.preventDefault();
+    e.stopPropagation();
     window.location.href = "/Register";
   }
 
@@ -54,7 +59,7 @@ const LoginForm = () => {
       </div>
 
       <div className="containerRight">
-        <form className="form">
+        <form className="form" onSubmit={onSubmitHandler}>
           <img className="logo" src={logo} />
           <div className="form-group">
             <label className="form-label">Username</label>
@@ -74,14 +79,14 @@ const LoginForm = () => {
             <input
               type="password"
               placeholder="Password"
-              name="password"
+              name="userPassword"
               value={user.userPassword}
               onChange={onChangeHandler}
               required
             />
             <br />
             <br />
-            <button className="btn-login" onSubmit={onSubmitHandler}>
+            <button className="btn-login" type="submit">
               Log In
             </button>
           </div>
