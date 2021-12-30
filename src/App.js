@@ -1,10 +1,11 @@
 import "./App.css";
+import ChangePassword from "./pages/ChangePassword";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 
 function App() {
   return (
     <div className="App">
-      <RegisterPage />
+      <ChangePassword />
     </div>
   );
 }

@@ -6,8 +6,8 @@ import { useSelector, useDispatch } from 'react-redux'
 
  const ChangePassword = () => {
     
-    const userId = useSelector(state => state.userId)
-
+    const userId = useSelector(state => state.userId.value)
+    
     console.log(userId)
 
     const initialState = {
