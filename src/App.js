@@ -1,13 +1,16 @@
-import "./App.css";
-import ChangePassword from "./pages/ChangePassword";
-import RegisterPage from "./pages/RegisterPage/RegisterPage";
+
+import './App.css';
+import Profile from './pages/profile';
+import PrivacyPage from './pages/PrivacyPage';
+import ChangePassword from './pages/ChangePassword';
 
 function App() {
   return (
-    <div className="App">
-      <ChangePassword />
+    <div>
+     <ChangePassword />
     </div>
   );
+
 }
 
 export default App;

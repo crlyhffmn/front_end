@@ -1,29 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import 'react-bootstrap';
-import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
-
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import {configureStore} from '@reduxjs/toolkit';
-
-import { Provider } from 'react-redux';
-import {userStore} from './userStore'
-
-
-
-
+import 'bootstrap/dist/css/bootstrap.css'
+import {userStore} from './userStore';
+import {Provider} from "react-redux";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={userStore}>
+  <Provider store={userStore}>
     <App />
-    
-    </Provider>
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
-
-reportWebVitals();
