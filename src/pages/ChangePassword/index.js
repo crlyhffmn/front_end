@@ -2,25 +2,23 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Form, Button, Card, Row, Col, Alert } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux'
-
+import { loginUser } from "../../userSlice";
 
  const ChangePassword = () => {
     
-    const userId = useSelector(state => state.userId.value)
+    const user = useSelector(state => state.user)
     
-    console.log(userId)
+   const [userObject, setUserObject] = useState(user)
 
-    const initialState = {
-        OldPassword: '',
-        NewPassword: '',
-        ConfirmPassword: ''
-    };
+   const dispatch = useDispatch();
 
-    const [newUser, setNewUser] = useState({
-        OldPassword: '',
-        NewPassword: '',
-        ConfirmPassword: ''
-    });
+   const initialState ={
+    OldPassword: '',
+    NewPassword: '',
+    ConfirmPassword: ''
+};
+
+    const [updateInfo, setUpdateInfo] = useState(initialState);
 
     const [submitted, setSubmitted] = useState(false);
     const [error, setError] = useState(false);
@@ -28,8 +26,8 @@ import { useSelector, useDispatch } from 'react-redux'
 
    function onChangeHandler(event) {
         console.log(event.target.name);
-        setNewUser({
-            ...newUser,
+        setUpdateInfo({
+            ...updateInfo,
             [event.target.name]: event.target.value,
         });
     };
@@ -37,12 +35,12 @@ import { useSelector, useDispatch } from 'react-redux'
 
 
     const clearState = () => {
-        setNewUser({ ...initialState });
+        setUpdateInfo({ ...initialState });
     };
 
     const checkFieldsHandler = (e) => {
     // check if any fields are empty
-    if (newUser.OldPassword === "" || newUser.NewPassword === "" || newUser.ConfirmPassword === "") {
+    if (updateInfo.OldPassword === "" || updateInfo.NewPassword === "" || updateInfo.ConfirmPassword === "") {
         console.log("setError(true)")
         setSubmitted(false)
         setError(true)
@@ -55,65 +53,72 @@ import { useSelector, useDispatch } from 'react-redux'
 }
 
 const displayMessage = () => {
-    if (submitted) {   // show success message if true
-        return (
-            <Alert
-                variant='success'
-                style={{
-                    display: submitted ? "" : "none",
-                }}
-            >
-                Password Changed Successfully 
-            </Alert>
-        )
-    } else if (error) {  // show error message if error is true
-        return (
-            <Alert
-                variant='danger'
-                style={{
-                    display: error ? "" : "none",
-                }}
-            >
-                Please fill in all fields
-            </Alert>
-        )
-    } else if (errorMsg !== '') {
-        return (
-            <Alert
-                variant='danger'
-                style={{
-                    display: error ? "" : "none",
-                }}
-            >
-                {errorMsg}
-            </Alert>
-        )
+    if (errorMsg !== "") {
+      return (
+        <Alert
+          variant="danger"
+          style={{
+            display: errorMsg ? "" : "none",
+          }}
+        >
+          {errorMsg}
+        </Alert>
+      );
+    } else if (submitted) {
+      // show success message if true
+      return (
+        <Alert
+          variant="success"
+          style={{
+            display: submitted ? "" : "none",
+          }}
+        >
+          Password Changed Successfully
+        </Alert>
+      );
     }
-}
+  };
 
-const registerHandler = (e) => {
+  function onSubmitHandler(e) {
     e.preventDefault();
-    if (error === false) {
-        axios.put(`http://localhost:10001/${newUser.NewPassword}`)//needs password as well 
-            .then(response => {
-                console.log(response.data);
-                clearState();
-            })
-            .catch(error => {
-                console.error(error);
-                setErrorMsg(error);
-            })
-    }
-};
-
+    e.stopPropagation();
+    console.log(e);
+    setUserObject({
+        ...userObject,
+        userPassword:updateInfo.OldPassword,
+    });
+    axios
+      .post("http://localhost:10001/user/login", userObject)
+      .then((response) => {
+        console.log(response.data);
+        setUserObject({
+            ...userObject,
+            userPassword:updateInfo.NewPassword,
+        });
+        axios
+        .put("http://localhost:10001/user", userObject)
+        .then((response) => {
+          console.log(response.data);
+        dispatch(loginUser(response.data));
+        });
+        
+      })
+      .catch((error) => {
+        console.error(error);
+        console.log(error.response);
+        //does not alert user
+        setErrorMsg("Username or Password is Incorrect");
+        setUserObject(initialState);
+      });
+  }
 
     return(
         <Card>
         <Card.Title>Registration Form</Card.Title>
         <Card.Body style={{ textAlign: "left" }}>
-            <Form onSubmit={registerHandler}>
+            <Form onSubmit={onSubmitHandler}>
                 <Form.Group className="mb-3">
-                    <Form.Label>Pervious Password </Form.Label>
+                    <Form.Label>Pervious Password</Form.Label>
                     <Form.Control
                         type="password"
                         placeholder="Old Password"
@@ -122,7 +127,7 @@ const registerHandler = (e) => {
                     />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Label>New Password </Form.Label>
+                    <Form.Label>New Password</Form.Label>
                     <Form.Control
                         type="password"
                         placeholder="New Password"
