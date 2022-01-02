@@ -1,4 +1,4 @@
-Login/Register portion of the project MiniMint
+#Login/Register portion of the project MiniMint
 
 This section consists of the pages Login, Register, ChangePassword, and the store.
 Some pages contain axios calls to the backend. The backend was built using the java
