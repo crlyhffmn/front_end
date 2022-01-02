@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import logo from './Logo3.png'
 import './register.css';
 import { hover } from '@testing-library/user-event/dist/hover';
 import { Form, Button, Card, Row, Col, Alert, FormGroup } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-// import { login } from '../../userStore';
+import { loginUser } from '../../userSlice';
 
 const Register = () => {
 
@@ -16,13 +15,15 @@ const Register = () => {
         username: '',
         userEmail: '',
         userPassword: ''
-    }
+    };
 
-    const [user, setUser] = useState({
-        username: '',
-        userEmail: '',
-        userPassword: ''
-    })
+    const [user, setUser] = useState(initialState);
+    // (
+    //     {
+    //     username: '',
+    //     userEmail: '',
+    //     userPassword: ''
+    // })
 
     const dispatch = useDispatch();
 
@@ -54,7 +55,7 @@ const Register = () => {
             console.log("setError(true)")
             setSubmitted(false)
             setErrorMsg('Please fill out all the fields.')
-        }        
+        }
         else { // everything is good now submit to server
             console.log("setSubmitted(true) setError(false)")
             setErrorMsg('')
@@ -73,7 +74,7 @@ const Register = () => {
                 >
                     {errorMsg}
                 </Alert>
-            )
+            );
         }
         else if (submitted) {   // show success message if true
             return (
@@ -85,145 +86,154 @@ const Register = () => {
                 >
                     You have successfully registered!
                 </Alert>
-            )
+            );
         }
-    }
+    };
 
 
     const registerHandler = (e) => {
         e.preventDefault();
-        dispatch(login(user));
+        e.stopPropagation();
+        // dispatch(login(user));
         const form = e.currentTarget;
         if (form.checkValidity() === true) {
-            e.preventDefault();
-            e.stopPropagation();
+            // e.preventDefault();
+            // e.stopPropagation();
             axios.post("http://localhost:10001/user", user)
-                .then(response => {
+                .then((response) => {
                     console.log(response.data);
                     clearState();
-                    setSubmitted(true)
+                    setSubmitted(true);
+                    dispatch(loginUser(response.data));
                 })
                 .catch(error => {
                     console.error(error);
                     //setErrorMsg(error.response.data.message);
-                    setErrorMsg("User email has already been registered.")
-                    console.log("error.response.data.message = " + error.response.data.message)
-                })
-        }
-        else {
+                    setErrorMsg("Username or email has already been registered.")
+                    console.log(error.response);
+                });
+        } else {
             setSubmitted(false)
         }
 
         setValidated(true);
 
-    }; 
+    };
 
     console.log("errorMsg = " + errorMsg);
 
     console.log(logo)
 
     return (
-        <div className='row align-items-center'>
-            <div className='col'>
-                <div className="logob">
-                    <img className='logo' src={logo} alt="mint" style={{ paddingTop: '50px' }}></img>
-                    {/* <br></br> */}
+        <div>
+            <section>
+                <div className='row align-items-center'>
+                    <div className='col'>
+                        <div className="logob">
+                            <img className='logo' src={logo} alt="mint" style={{ paddingTop: '50px' }}></img>
+                            {/* <br></br> */}
 
-                    <h1 style={{ float: 'center', paddingLeft: '85px', marginTop:'40px' }}>
-                        MiniMint
-                    </h1>
+                            <h1 style={{ float: 'left', paddingLeft: '200px', marginTop: '40px' }}>
+                                MiniMint
+                            </h1>
 
-                    {/* <br></br> */}
+                            {/* <br></br> */}
 
-                    <div className="textbox">
+                            <div className="textbox">
 
-                        <h2 style={{ color: '#C21515', marginTop:'50px' }}>
-                            Join the awesome Batch<br></br>
+                                <h2 style={{ color: '#C21515', paddingTop: '15px', paddingLeft: '200px' }}>
+                                    Join the awesome Batch<br></br>
 
-                            of Minty social media.
-                        </h2>
+                                    of Minty social media.
+                                </h2>
+                            </div>
+
+                        </div>
+
+
                     </div>
 
-                </div>
+                    <div className='col'>
 
+                        <Form className='reg-form' noValidate validated={validated} onSubmit={registerHandler} >
+                            <div className='register-text'>
+                                <h3>Register</h3>
+                                <h4>It's quick and easy</h4>
+                            </div>
+                            <hr></hr>
+                            <Form.Group className="mb-3">
+                                <Form.Label >Username </Form.Label>
+                                <Form.Control
+                                    type='text '
+                                    placeholder='username'
+                                    onChange={onChangeHandler}
+                                    name='username'
+                                    required
+                                />
+                                <Form.Control.Feedback type="invalid">
+                                    Please provide a username.
+                                </Form.Control.Feedback>
+                            </Form.Group>
+                            <Form.Group className="mb-3">
+                                <Form.Label>Email </Form.Label>
+                                <Form.Control
+                                    type='email'
+                                    placeholder="example@mail.com"
+                                    onChange={onChangeHandler}
+                                    name='userEmail'
+                                    required
+                                />
+                                <Form.Control.Feedback type="invalid">
+                                    Please provide a valid email.
+                                </Form.Control.Feedback>
+                            </Form.Group>
+                            <Form.Group className="mb-3">
+                                <Form.Label>Password </Form.Label>
+                                <Form.Control
+                                    type='password'
+                                    placeholder="password"
+                                    onChange={onChangeHandler}
+                                    name="userPassword"
+                                    required
+                                />
+                                <Form.Control.Feedback type="invalid">
+                                    Please provide a password.
+                                </Form.Control.Feedback>
+                            </Form.Group>
+                            <div className="messages">
+                                {displayMessage()}
+                            </div>
 
-            </div>
+                            <FormGroup >
+                                <Button
+                                    className="regis"
+                                    onClick={checkFieldsHandler}
+                                    type="submit"
 
-            <div className='col'>
+                                // style={{ width: '100%', marginTop: '-12.125', marginRight: '160px', backgroundColor: '#C21515', border: 'none' }}
+                                // onFocus={{ backgroundColor:'#BADABF' }}
+                                >
+                                    Register
+                                </Button>
+                            </FormGroup>
+                            <hr></hr>
+                            <FormGroup>
+                                <Form className='mb-3'>
+                                    <a href="/" className="stretched-link">Already Registered?</a>
+                                </Form>
+                            </FormGroup>
+                        </Form>
 
-                <Form className='reg-form' noValidate validated={validated} onSubmit={registerHandler} >
-
-                    <h3>Register</h3>
-                    <h4>It's quick and easy</h4>
-                    <hr></hr>
-                    <Form.Group className="mb-3">
-                        <Form.Label >Username </Form.Label>
-                        <Form.Control
-                            type="text"
-                            placeholder="username"
-                            onChange={onChangeHandler}
-                            name="username"
-                            required
-                        />
-                        <Form.Control.Feedback type="invalid">
-                            Please provide a username.
-                        </Form.Control.Feedback>
-                    </Form.Group>
-                    <Form.Group className="mb-3">
-                        <Form.Label>Email </Form.Label>
-                        <Form.Control
-                            type="email"
-                            placeholder="example@mail.com"
-                            onChange={onChangeHandler}
-                            name="userEmail"
-                            required
-                        />
-                        <Form.Control.Feedback type="invalid">
-                            Please provide a valid email.
-                        </Form.Control.Feedback>
-                    </Form.Group>
-                    <Form.Group className="mb-3">
-                        <Form.Label>Password </Form.Label>
-                        <Form.Control
-                            type="password"
-                            placeholder="password"
-                            onChange={onChangeHandler}
-                            name="userPassword"
-                            required
-                        />
-                        <Form.Control.Feedback type="invalid">
-                            Please provide a password.
-                        </Form.Control.Feedback>
-                    </Form.Group>
-                    <div className="messages">
-                        {displayMessage()}
-                    </div>
-
-                    <FormGroup >
-                        <button
-                            className="btn-reg"
-                            onClick={checkFieldsHandler}
-                            type="submit"
-                        // style={{ width: '23rem', marginTop: '-12.125', marginRight: '160px', backgroundColor: '#C21515', border: 'none' }}
-                        // onFocus={{ backgroundColor:'#BADABF' }}
-                        >
-                            Register
-                        </button>
-                    </FormGroup>
-                </Form>
-                <Form className='reg-formb'>
-                    <a href="/login" class="stretched-link">Already Registered?</a>
-                </Form>
-                {/* </Card.Body>
+                        {/* </Card.Body>
                 </Card> */}
-            </div>
+                    </div>
 
-            {/* <div className='col'>
-
+                    {/* <div className='col'>
                 
-
             </div> */}
 
+                </div >
+            </section>
         </div>
     )
 }

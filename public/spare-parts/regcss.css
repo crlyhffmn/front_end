@@ -7,13 +7,6 @@
    
 }
 
-.register-text{
-    text-align: center;
-    vertical-align: middle;
-    font-size: xx-large;
-    font-weight:600;
-}
-
 .logo{
     float: right;
     margin-top: -70px;
@@ -34,8 +27,7 @@
     padding: 30px;
     /* border-left: 2px;
     border-color: black; */
-    box-shadow:	0 0.125rem 0.5rem rgba(0, 0, 0, .3), 0 0.0625rem 0.125rem rgba(0, 0, 0, .2);
-    /* box-shadow: 5px 5px 5px #C4C4C4; */
+    box-shadow: 5px 5px 5px #C4C4C4;
     border-radius: 8px;
     width: 430px;
     height: auto;  
@@ -43,14 +35,12 @@
 
 .textbox{
     color: #C21515;
-    float: left;
+    float: center;
     /* margin-right: 75px; */
-    padding-top: 10px;
+    margin-top: 60px;
     margin-bottom: 0px;
      
 }
-
-
 
 /* h2{
     color: #C21515;
@@ -64,21 +54,18 @@
     float: left;
 }
 
-.regis:hover{
-    background-color: #BADABF !important;
-    transition: 0.3s;
-}
-
-.regis{
-    width: 100%; 
+.btn-reg{
+    width: 23rem; 
     margin-top: -12.125; 
     margin-right: 160px; 
-    background-color: #C21515 !important; 
-    border: none !important;   
-    border-radius: 8px !important;
+    background-color: #C21515; 
+    border: none;   
 }
 
-
+.btn-reg:hover{
+    background-color: #BADABF;
+    transition: 0.3s;
+}
 
 a{
     color: #202020;

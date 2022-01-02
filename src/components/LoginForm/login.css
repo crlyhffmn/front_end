@@ -1,97 +1,102 @@
-
-
 *{
     margin: 0%;
     padding: 0%;
+    font-size:large;
     /* background-color: 	white; */
     /* background-image:url('Logo3.png') ; */ 
 }
 
-.frm.btn{
-    background-color: black;
+.logo{
+    /* width: 180px; */
+}
+.brand-motto{
+    color: #C21515;
 }
 
-.column {
-    float: left;
-    width: 50%;
-    padding: 10px;
-    height: 300px;/* Should be removed. Only for demonstration */
+.mb-3 p {
+    /* display: table-cell; */
+  text-align: center;
+  vertical-align: middle;
+  font-size: xx-large;
+  font-weight:600;
 }
 
-form{
-    float:right;
-    background-color: white;
-    margin-top: 34px;
-    margin-right: 85px;
-    padding: 30px;
-   
-    box-shadow: 5px 8px 8px #BADABF;
+.col-md-6{
+    padding-top: 40px;
+    vertical-align:middle ;
+    
+}
+
+.login-form{
+    float: right;
+    padding: 15px;
+    /* box-shadow: 5px 8px 8px #BADABF; */
+    box-shadow:	0 0.125rem 0.5rem rgba(0, 0, 0, .3), 0 0.0625rem 0.125rem rgba(0, 0, 0, .2);
     border-radius: 8px;
     width: 430px;
-    height: auto;
-
+    /* height: auto; */
+    overflow: auto;
+    color: #C21515;
 }
 
-Button{
-    width: 250px;
-    margin-top: 15px;
-    background-color:#202020 ;
-    padding: 16px;
-    border: none;
-    /* width: 100%; */
-    
-    
-
-
-    /* font-size: 1.5em; */
-    text-align: center;
-    vertical-align: middle;
- 
-    /* line-height: 100px; */
+.card{
+    display: block;
+    box-shadow: 5px 8px 8px #BADABF;
+    border-radius: 8px;
+    width: 405px;
+    /* height: 230; */
+    /* height: auto; */
+    overflow: auto;
 }
 
-.btn-login{
-    background-color:rgb(194, 21, 21 ) ;
-    border-radius: 3px;
-    border-radius: 6px;
-    border: none;
-}
-.btn-login:hover{
-    background-color: #BADABF;
-    transition: 0.4s;
-    
+.logo-login{
+    display: block;
+    float: center;
+    padding-top: 70px;
+    padding-right: 130px;
 }
 
-.btn-register{
-    /* background-color:#4CAF50 ; */
-    background-color:#BADABF ;
-    border-radius: 3px;
-    border-radius: 6px;
-    border: none;
-}
-.btn-register:hover{
-    background-color: rgb(194, 21, 21 );
-    transition: 0.4s;
-}
-
-h1{
-    float: left;
-    color: #880F0F;
-    margin-top: 150px;
-    margin-left: 350px;
-}
-h2{
+.text-area{
+    display: block;
+    padding-top: 30px;
+    padding-right: 0px;
     float: right;
-    color: #202020;
-    margin-top: 250px;
-    margin-right: -150px;
+    color: #880F0F;
 }
 
 .form-control:focus-within{
-    border:1.5px solid #880F0F;
+    border: 1.25px solid #880F0F !important;
 }
 
-.logo{
-    margin-right: 54px;
+/* .btn{
+    width: 100%;
+    background-color: #C21515 !important;
+    border: none !important;
 }
-  
+.btn:hover{
+    background-color: #BADABF;
+    color: #880F0F !important;
+} */
+.btn-login{
+    width: 100%;
+    background-color: #C21515 !important;
+    border: none !important;
+    border-radius: 10px !important;
+}
+.btn-login:hover{
+    background-color: #BADABF;
+    color: #880F0F !important;
+}
+
+.btn-regis{
+    width: 100%;
+    background-color: #BADABF !important;
+    border: none !important;
+    border-radius: 10px !important;
+    color: #C21515 !important;
+    
+}
+.btn-regis:hover{
+    background-color:#880F0F !important;
+    color: #fff !important;
+}
