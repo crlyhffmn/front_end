@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+Login/Register portion of the project MiniMint
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This section consists of the pages Login, Register, ChangePassword, and the store.
+Some pages contain axios calls to the backend. The backend was built using the java
+framwork spring. 
 
-## Available Scripts
+**Technologies used**
+This section was built on React and reqiures imports such as:
 
-In the project directory, you can run:
+@reduxjs/toolkit react-redux
 
-### `npm start`
+axios
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+bootstrap
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**Styling**
+This was done with a combination of bootstrap and CSS.
 
-### `npm test`
+**Login**
+This page allows users to login with their username and password
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Register** 
+This page allows for new users to sign up and collects a username, email, password for the account.
 
-### `npm run build`
+**ChangePassword** 
+Allows users to Change their password after they have logged in
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Navbar** 
+For user Navigation from page to page. **add explination upon completetion 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**Footer** 
+Additional Notes and messages
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Store**
+The store was build using react toolkit and incorperates one Slice for the user. The 
+store is used to house the state of the user and allows the whole app to access vital
+user information. Certain actions can also be taken using the store including actions
+like loggin in and out. Login sets the state with values of that user and logout resets
+the state to its default.
