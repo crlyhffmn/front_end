@@ -16,7 +16,7 @@ bootstrap
 **Styling**
 This was done with a combination of bootstrap and CSS.
 
-## Pages
+## Pages Function
 **Login**
 This page allows users to login with their username and password
 
