@@ -18,13 +18,14 @@ This was done with a combination of bootstrap and CSS.
 
 ## Pages Function
 **Login**
-This page allows users to login with their username and password
+This page allows users to login with their username and password. This also grabs userId, email, username for the store.
 
 **Register** 
 This page allows for new users to sign up and collects a username, email, password for the account.
 
 **ChangePassword** 
-Allows users to Change their password after they have logged in
+Allows users to Change their password after they have logged in. The call to login using the oldPassword and (when successful) uses 
+put to replace the password in the database.
 
 **Navbar** 
 For user Navigation from page to page. **add explination upon completetion 
