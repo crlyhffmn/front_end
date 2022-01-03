@@ -4,7 +4,7 @@ This section consists of the pages Login, Register, ChangePassword, and the stor
 Some pages contain axios calls to the backend. The backend was built using the java
 framwork spring. 
 
-**Technologies used**
+## Technologies used**
 This section was built on React and reqiures imports such as:
 
 @reduxjs/toolkit react-redux
